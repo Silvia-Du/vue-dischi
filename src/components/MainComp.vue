@@ -5,7 +5,7 @@
     v-if="isLoading"
     class="container">
       <div class="sd-row row d-flex justify-content-center">
-        <CardMain 
+        <CardItem
         v-for="(card, index) in cardsList" :key="`card-${index}`" 
         :cardItem="card"/>
       </div>
@@ -17,13 +17,13 @@
 
 <script>
 
-import CardMain from './CardMain.vue';
+import CardItem from './CardItem.vue';
 import axios from 'axios';
 import LoadingComp from './LoadingComp.vue';
 
 export default {
     name: "MainComp",
-    components: { CardMain, LoadingComp },
+    components: { CardItem, LoadingComp },
 
     data(){
       return{

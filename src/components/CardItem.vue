@@ -1,6 +1,6 @@
 <template>
     
-    <div class=" text-center col-3 col-md-4 col-lg-2">
+    <div class=" text-center col-6 col-md-4 col-lg-2">
       <img :src="cardItem.poster" :alt="cardItem.title">
       <p>{{cardItem.title}}</p>
       <p class="mb-0">{{cardItem.author}}</p>
@@ -11,7 +11,7 @@
 
 <script>
 export default {
-  name: 'CardMain',
+  name: 'CardItem',
   props: {cardItem: Object}
 }
 </script>
@@ -20,7 +20,7 @@ export default {
 
   @import '../assets/style/vars.scss';
 
-  .col-3{
+  .col-6{
     background-color: $lightenColor;
     padding: 15px;
     margin: 0 15px 30px 15px;
