@@ -1,13 +1,16 @@
 <template>
 
-  <main class="d-flex align-items-center py-3">
-    <div class="container">
+  <main class="d-flex align-items-center justify-content-center py-3">
+    <div 
+    v-if="isLoading"
+    class="container">
       <div class="sd-row row d-flex justify-content-center">
         <CardMain 
         v-for="(card, index) in cardsList" :key="`card-${index}`" 
         :cardItem="card"/>
       </div>
     </div>
+    <div v-else><LoadingComp :loadingMsg="`Ci siamo quasi!`"/></div>
   </main>
 
 </template>
@@ -16,15 +19,17 @@
 
 import CardMain from './CardMain.vue';
 import axios from 'axios';
+import LoadingComp from './LoadingComp.vue';
 
 export default {
     name: "MainComp",
-    components: { CardMain },
+    components: { CardMain, LoadingComp },
 
     data(){
       return{
         apiUrl: 'https://flynn.boolean.careers/exercises/api/array/music',
         cardsList :[],
+        isLoading: false
       }
     },
 
@@ -38,7 +43,10 @@ export default {
         axios.get(this.apiUrl)
         .then(response => {
           this.cardsList = response.data.response;
-          
+          this.isLoading = true;
+        })
+        .catch(error => {
+          console.log(error);
         })
       }
     },
