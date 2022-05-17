@@ -1,9 +1,8 @@
 <template>
 
-  <main class="d-flex align-items-center">
+  <main class="d-flex align-items-center py-3">
     <div class="container">
       <div class="sd-row row d-flex justify-content-center">
-        
         <CardMain 
         v-for="(card, index) in cardsList" :key="`card-${index}`" 
         :cardItem="card"/>
@@ -50,7 +49,7 @@ export default {
 <style lang="scss" scoped>
 
   main{
-    height: calc(100vh - 80px);
+    min-height: calc(100vh - 80px);
     background-color: #1e2d3b;
     .sd-row{
       margin: 0 auto;

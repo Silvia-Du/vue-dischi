@@ -1,6 +1,6 @@
 <template>
-
-    <div class="_card text-center">
+    
+    <div class=" text-center col-3 col-md-4 col-lg-2">
       <img :src="cardItem.poster" :alt="cardItem.title">
       <p>{{cardItem.title}}</p>
       <p class="mb-0">{{cardItem.author}}</p>
@@ -20,11 +20,10 @@ export default {
 
   @import '../assets/style/vars.scss';
 
-  ._card{
+  .col-3{
     background-color: $lightenColor;
     padding: 15px;
     margin: 0 15px 30px 15px;
-    width: calc((100% / 5) - 30px);
 
     & p:first-of-type{
       color: white;
