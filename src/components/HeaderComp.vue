@@ -8,9 +8,9 @@
 
       <select id="genere" class="form-select sd-form">
         <option selected>Seleziona un genere</option>
-        <option value="0">Easy</option>
-        <option value="1">Hard</option>
-        <option value="2">Crazy</option>
+        <option value="0">Genere 1</option>
+        <option value="1">Genere 2</option>
+        <option value="2">Genere 3</option>
       </select>
    
   </div>
