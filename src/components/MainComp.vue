@@ -6,7 +6,7 @@
     class="container">
       <div class="sd-row row d-flex justify-content-center">
         <CardItem
-        v-for="(card, index) in CardsListForGenre" :key="`card-${index}`" 
+        v-for="(card, index) in listToPrint" :key="`card-${index}`" 
         :cardItem="card"/>
       </div>
     </div>
@@ -28,29 +28,39 @@ export default {
       selectedGenre: String,
       selectedArtist: String
     },
-    
+
     components: { CardItem, LoadingComp },
 
     computed:{
 
-      CardsListForGenre(){
+      listToPrint(){
         let listForGenre = [];
+
         if(this.selectedGenre === '' || this.selectedGenre === 'Seleziona un genere'){
           listForGenre = this.cardsList;
+         
         }else{
           listForGenre = this.cardsList.filter(card =>{
             return card.genre === this.selectedGenre;
+          })
+        }
+
+        if(this.selectedArtist != ''){
+          console.log(this.selectedArtist.toUpperCase());
+          listForGenre = this.cardsList.filter(card =>{
+            return card.author.toUpperCase().includes(this.selectedArtist.toUpperCase());
           })
         }
         return listForGenre;
       }
     },
 
-
     data(){
       return{
         apiUrl: 'https://flynn.boolean.careers/exercises/api/array/music',
         cardsList :[],
+        listForArtist:[],
+
         isLoading: false,
       }
     },
@@ -66,6 +76,7 @@ export default {
         .then(response => {
           this.cardsList = response.data.response;
           this.isLoading = true;
+          this.$emit('getSelectOption', this.cardsList);
         })
         .catch(error => {
           console.log(error);

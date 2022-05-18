@@ -1,7 +1,7 @@
 <template>
   <div>
     <HeaderComp @getGenreEvent ="filteredByGenre" @getArtistEvent ="filteredByArtist"/>
-    <MainComp :selectedGenre="cardType" :selectedArtist= "cardArtist"/>
+    <MainComp :selectedGenre="cardType" :selectedArtist= "cardArtist" @getSelectOption="getOprionValue"/>
   </div>
 </template>
 
@@ -27,13 +27,18 @@ export default {
 
   methods: {
     filteredByGenre(cardGenre){
-      console.log('ascotatore 2');
+      // console.log('ascotatore 2');
       this.cardType = cardGenre;
     },
 
     filteredByArtist(artistString){
-      console.log('ascoltatore 2 artist');
+      // console.log('ascoltatore 2 artist');
       this.cardArtist = artistString;
+      console.log(artistString);
+    },
+
+    getOprionValue(cardsList){
+      console.log(cardsList, 'eccolo qui');
     }
 
 
