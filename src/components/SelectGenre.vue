@@ -13,16 +13,12 @@
 
 <script>
 export default {
-  name: 'SelectComp',
+  name: 'SelectGenre',
 
    data() {
         return {
             genre: "Seleziona un genere"
         };
-    },
-
-    methods:{
-      
     }
 }
 </script>

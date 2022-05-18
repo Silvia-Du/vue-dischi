@@ -23,7 +23,12 @@ import LoadingComp from './LoadingComp.vue';
 
 export default {
     name: "MainComp",
-    props: { selectedGenre: String },
+
+    props: { 
+      selectedGenre: String,
+      selectedArtist: String
+    },
+    
     components: { CardItem, LoadingComp },
 
     computed:{

@@ -1,7 +1,7 @@
 <template>
   <div>
-    <HeaderComp @getGenre ="FilteredCards"/>
-    <MainComp :selectedGenre="cardType"/>
+    <HeaderComp @getGenreEvent ="filteredByGenre" @getArtistEvent ="filteredByArtist"/>
+    <MainComp :selectedGenre="cardType" :selectedArtist= "cardArtist"/>
   </div>
 </template>
 
@@ -21,14 +21,19 @@ export default {
   data() {
     return {
       cardType: '',
+      cardArtist: '',
     }
   },
 
   methods: {
-    FilteredCards(cardGenre){
+    filteredByGenre(cardGenre){
+      console.log('ascotatore 2');
       this.cardType = cardGenre;
-      console.log(this.cardType,'-----sssss');
+    },
 
+    filteredByArtist(artistString){
+      console.log('ascoltatore 2 artist');
+      this.cardArtist = artistString;
     }
 
 
