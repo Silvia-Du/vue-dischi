@@ -16,7 +16,19 @@ export default {
   components: {
     HeaderComp,
     MainComp
-}
+  },
+
+  data() {
+    return {
+      
+    }
+  },
+
+  methods: {
+    selectForGenre(cardGenre){
+      console.log(cardGenre);
+    }
+  }
 }
 </script>
 
