@@ -6,7 +6,7 @@
     class="container">
       <div class="sd-row row d-flex justify-content-center">
         <CardItem
-        v-for="(card, index) in cardsList" :key="`card-${index}`" 
+        v-for="(card, index) in CardsListForGenre" :key="`card-${index}`" 
         :cardItem="card"/>
       </div>
     </div>
@@ -23,13 +23,30 @@ import LoadingComp from './LoadingComp.vue';
 
 export default {
     name: "MainComp",
+    props: { selectedGenre: String },
     components: { CardItem, LoadingComp },
+
+    computed:{
+
+      CardsListForGenre(){
+        let listForGenre = [];
+        if(this.selectedGenre === ''){
+          listForGenre = this.cardsList;
+        }else{
+          listForGenre = this.cardsList.filter(card =>{
+            return card.genre === this.selectedGenre;
+          })
+        }
+        return listForGenre;
+      }
+    },
+
 
     data(){
       return{
         apiUrl: 'https://flynn.boolean.careers/exercises/api/array/music',
         cardsList :[],
-        isLoading: false
+        isLoading: false,
       }
     },
 

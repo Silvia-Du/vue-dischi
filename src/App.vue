@@ -1,7 +1,7 @@
 <template>
   <div>
-    <HeaderComp />
-    <MainComp />
+    <HeaderComp @getGenre ="FilteredCards"/>
+    <MainComp :selectedGenre="cardType"/>
   </div>
 </template>
 
@@ -20,14 +20,18 @@ export default {
 
   data() {
     return {
-      
+      cardType: '',
     }
   },
 
   methods: {
-    selectForGenre(cardGenre){
-      console.log(cardGenre);
+    FilteredCards(cardGenre){
+      this.cardType = cardGenre;
+      console.log(this.cardType,'-----sssss');
+
     }
+
+
   }
 }
 </script>
