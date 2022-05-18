@@ -30,7 +30,7 @@ export default {
 
       CardsListForGenre(){
         let listForGenre = [];
-        if(this.selectedGenre === ''){
+        if(this.selectedGenre === '' || this.selectedGenre === 'Seleziona un genere'){
           listForGenre = this.cardsList;
         }else{
           listForGenre = this.cardsList.filter(card =>{
