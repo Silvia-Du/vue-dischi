@@ -1,7 +1,7 @@
 <template>
     
     <div class=" text-center col-6 col-md-4 col-lg-2">
-      <img :src="cardItem.poster" :alt="cardItem.title">
+      <img  class="img-fluid mb-3" :src="cardItem.poster" :alt="cardItem.title">
       <p>{{cardItem.title}}</p>
       <p class="mb-0">{{cardItem.author}}</p>
       <p>{{cardItem.year}}</p>
@@ -32,10 +32,6 @@ export default {
     }
     p{
       color: #716f6f;
-    }
-    img{
-      width: 100%;
-      margin-bottom: 10px;
     }
   }
 
