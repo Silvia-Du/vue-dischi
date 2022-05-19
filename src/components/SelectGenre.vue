@@ -3,10 +3,9 @@
       v-model="genre"
       @change="$emit('selectGenre',genre)"
       id="genere" class="form-select sd-form">
-        <option selected>Seleziona un genere</option>
+        <option value ="">Seleziona un genere</option>
         <option 
-        v-for="(genre,index) in getFileredArray" :key="`option-${index}`"
-        value="Rock">{{genre}}</option>
+        v-for="(genre,index) in getFileredArray" :key="`option-${index}`">{{genre}}</option>
         
   </select>
 </template>
@@ -18,7 +17,7 @@ export default {
 
   data() {
     return {
-      genre: "Seleziona un genere",
+      genre: '',
     };
   },
 
@@ -26,10 +25,8 @@ export default {
     getFileredArray(){
       let genreArray = [];
       this.cardArray.forEach(card=>{
-        if(!genreArray.includes(card.genre)){
-          genreArray.push(card.genre);
-          console.log(genreArray);
-        }
+        if(!genreArray.includes(card.genre)) genreArray.push(card.genre);
+        
       })
       return genreArray;
     }

@@ -31,46 +31,53 @@ export default {
 
     components: { CardItem, LoadingComp },
 
-    computed:{
-
-      listToPrint(){
-        let listForGenre = [];
-
-        if(this.selectedGenre === '' || this.selectedGenre === 'Seleziona un genere'){
-          listForGenre = this.cardsList;
-         
-        }else{
-          listForGenre = this.cardsList.filter(card =>{
-            return card.genre === this.selectedGenre;
-          })
-        }
-
-        if(this.selectedArtist != ''){
-          console.log(this.selectedArtist.toUpperCase());
-          listForGenre = this.cardsList.filter(card =>{
-            return card.author.toUpperCase().includes(this.selectedArtist.toUpperCase());
-          })
-        }
-        return listForGenre;
-      }
-    },
-
     data(){
       return{
         apiUrl: 'https://flynn.boolean.careers/exercises/api/array/music',
         cardsList :[],
         listForArtist:[],
-
         isLoading: false,
       }
     },
 
-    
-    mounted() {
+    computed:{
+
+      listToPrint(){
+        let listForGenre = [];
+
+        if(this.selectedGenre === '' && this.selectedArtist === ''){
+          listForGenre = this.cardsList;
+        }
+        else{
+          if(this.selectedGenre != ''){
+
+            listForGenre = this.cardsList.filter(card => card.genre === this.selectedGenre);
+          }else if(this.selectedArtist != ''){
+
+            listForGenre = this.cardsList.filter(card => card.author === this.selectedArtist);
+          }else if(this.selectedGenre != '' && this.selectedArtist != ''){
+
+            this.cardList.forEach(card => {
+              if(card.genre === this.selectedGenre && card.author === this.selectedArtist){
+                listForGenre.push(card);
+              }
+            })
+            }else{
+              listForGenre =[];
+            }
+        }
+        return listForGenre;
+      }
+
+    },
+
+    //chiamata axios
+    mounted(){
       this.getDataDiscs();
     },
 
     methods:{
+
       getDataDiscs(){
         axios.get(this.apiUrl)
         .then(response => {
@@ -81,8 +88,9 @@ export default {
         .catch(error => {
           console.log(error);
         })
-      }
-    },
+      },
+
+    }
 
 }
 </script>
