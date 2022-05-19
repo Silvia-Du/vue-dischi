@@ -1,7 +1,7 @@
 <template>
   <div>
-    <HeaderComp :cardList="cardListforHeader" @getGenreEvent ="filteredByGenre" @getArtistEvent ="filteredByArtist"/>
-    <MainComp :selectedGenre="cardType" :selectedArtist= "cardArtist" @getSelectOption="getOptionValue"/>
+    <HeaderComp :optionList="optionListToSend" @getGenreEvent ="filteredByGenre" @getArtistEvent ="filteredByArtist"/>
+    <MainComp :selectedGenre="cardType" :selectedArtist= "cardArtist" @getSelectOption="getSelectOption"/>
   </div>
 </template>
 
@@ -22,7 +22,7 @@ export default {
     return {
       cardType: '',
       cardArtist: '',
-      cardListforHeader: [],
+      optionListToSend: [],
     }
   },
 
@@ -38,8 +38,8 @@ export default {
       console.log(artistString);
     },
 
-    getOptionValue(cardsList){
-      this.cardListforHeader = cardsList;
+    getSelectOption(optionList){
+      this.optionListToSend = optionList;
     }
 
 

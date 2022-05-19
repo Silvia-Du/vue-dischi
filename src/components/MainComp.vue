@@ -74,8 +74,16 @@ export default {
         .then(response => {
           this.cardsList = response.data.response;
           this.isLoading = true;
+
+          const genreList =[];
+          this.cardsList.forEach(card => {
+
+            if(!genreList.includes(card.genre)){
+              genreList.push(card.genre);
+            }
+          });
+          this.$emit('getSelectOption', genreList);
           
-          this.$emit('getSelectOption', this.cardsList);
         })
         .catch(error => {
           console.log(error);

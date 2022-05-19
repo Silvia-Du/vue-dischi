@@ -5,7 +5,7 @@
       id="genere" class="form-select sd-form">
         <option value ="">Seleziona un genere</option>
         <option 
-        v-for="(genre,index) in getFileredArray" :key="`option-${index}`">{{genre}}</option>
+        v-for="(genre,index) in optionArray" :key="`option-${index}`">{{genre}}</option>
         
   </select>
 </template>
@@ -13,23 +13,12 @@
 <script>
 export default {
   name: 'SelectGenre',
-  props:{ cardArray: Array },
+  props:{ optionArray: Array },
 
   data() {
     return {
       genre: '',
     };
-  },
-
-  computed:{
-    getFileredArray(){
-      let genreArray = [];
-      this.cardArray.forEach(card=>{
-        if(!genreArray.includes(card.genre)) genreArray.push(card.genre);
-        
-      })
-      return genreArray;
-    }
   }
 }
 </script>

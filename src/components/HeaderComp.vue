@@ -9,7 +9,7 @@
 
       <div class="select-box d-flex">
         <SelectArtist @selectedArtist="getCardForArtist"/>
-        <SelectGenre :cardArray="cardList" @selectGenre="getCardForGenre"/>
+        <SelectGenre :optionArray="optionList" @selectGenre="getCardForGenre"/>
       </div>
      
   </div>
@@ -23,7 +23,7 @@ import SelectArtist from "./SelectArtist.vue";
 
 export default {
     name: "HeaderComp",
-    props:{ cardList: Array },
+    props:{ optionList: Array },
     components: { SelectGenre, SelectArtist },
 
     data(){
@@ -33,12 +33,10 @@ export default {
    
     methods: {
         getCardForGenre(cardGenre){
-          console.log('evento scatenato 1');
           this.$emit('getGenreEvent', cardGenre);
         },
 
         getCardForArtist(artistSting){
-          console.log('evento artista 1');
           this.$emit('getArtistEvent', artistSting);
         }
     }
