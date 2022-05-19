@@ -43,30 +43,21 @@ export default {
     computed:{
 
       listToPrint(){
-        let listForGenre = [];
+        let fileterdList = [];
 
-        if(this.selectedGenre === '' && this.selectedArtist === ''){
-          listForGenre = this.cardsList;
+        if(this.selectedGenre != ''){
+          fileterdList = this.cardsList.filter(card => card.genre === this.selectedGenre);
+        }else{
+          fileterdList = this.cardsList;
         }
-        else{
-          if(this.selectedGenre != ''){
 
-            listForGenre = this.cardsList.filter(card => card.genre === this.selectedGenre);
-          }else if(this.selectedArtist != ''){
+        if(this.selectedArtist != ''){
+          let doubleCheckList =[];
+          doubleCheckList = fileterdList.filter(card => card.author.toLowerCase().includes(this.selectedArtist.toLowerCase()))
 
-            listForGenre = this.cardsList.filter(card => card.author === this.selectedArtist);
-          }else if(this.selectedGenre != '' && this.selectedArtist != ''){
-
-            this.cardList.forEach(card => {
-              if(card.genre === this.selectedGenre && card.author === this.selectedArtist){
-                listForGenre.push(card);
-              }
-            })
-            }else{
-              listForGenre =[];
-            }
+          fileterdList = doubleCheckList;
         }
-        return listForGenre;
+        return fileterdList;
       }
 
     },
@@ -83,6 +74,7 @@ export default {
         .then(response => {
           this.cardsList = response.data.response;
           this.isLoading = true;
+          
           this.$emit('getSelectOption', this.cardsList);
         })
         .catch(error => {
