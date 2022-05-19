@@ -1,7 +1,7 @@
 <template>
   <div>
-    <HeaderComp @getGenreEvent ="filteredByGenre" @getArtistEvent ="filteredByArtist"/>
-    <MainComp :selectedGenre="cardType" :selectedArtist= "cardArtist" @getSelectOption="getOprionValue"/>
+    <HeaderComp :cardList="cardListforHeader" @getGenreEvent ="filteredByGenre" @getArtistEvent ="filteredByArtist"/>
+    <MainComp :selectedGenre="cardType" :selectedArtist= "cardArtist" @getSelectOption="getOptionValue"/>
   </div>
 </template>
 
@@ -22,6 +22,7 @@ export default {
     return {
       cardType: '',
       cardArtist: '',
+      cardListforHeader: [],
     }
   },
 
@@ -37,8 +38,8 @@ export default {
       console.log(artistString);
     },
 
-    getOprionValue(cardsList){
-      console.log(cardsList, 'eccolo qui');
+    getOptionValue(cardsList){
+      this.cardListforHeader = cardsList;
     }
 
 
